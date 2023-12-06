@@ -22,7 +22,7 @@ namespace catalogmemov
     public partial class MainWindow : Window
     {
         List<Memchik> memes = new List<Memchik>();
-        List<Memchik> temp_memes = new List<Memchik>();
+        List<Memchik> buferMemov = new List<Memchik>();
 
         static string fileName = "MemesCatalog.json";
 
@@ -30,7 +30,7 @@ namespace catalogmemov
         {
             InitializeComponent();
 
-            meme_categories.Items.Add("all");
+            categoriesMemesov.Items.Add("all");
 
             if (File.Exists(fileName))
             {
@@ -40,16 +40,16 @@ namespace catalogmemov
                 {
                     memes.Add(mem);
 
-                    meme_list.Items.Add(mem.Name);
+                    listMemesov.Items.Add(mem.Name);
 
-                    if (!(meme_categories.Items.Contains(mem.Category)))
-                        meme_categories.Items.Add(mem.Category);
+                    if (!(categoriesMemesov.Items.Contains(mem.Category)))
+                        categoriesMemesov.Items.Add(mem.Category);
 
                 }
             }
         }
 
-        private void meme_down_Click(object sender, RoutedEventArgs e)
+        private void skachatMemchikSCompa_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog dlg = new OpenFileDialog();
             if (!(bool)dlg.ShowDialog())
@@ -57,21 +57,20 @@ namespace catalogmemov
 
             Uri fileUri = new Uri(dlg.FileName);
 
-            Add_meme add_mem_wnd = new Add_meme();
+            dobavlenie_s_kompa add_mem_wnd = new dobavlenie_s_kompa();
 
             if (add_mem_wnd.ShowDialog() == true)
             {
-                // перевод картинки в строку байт
                 byte[] imageArray = System.IO.File.ReadAllBytes(dlg.FileName);
                 string base64ImageRepresentation = Convert.ToBase64String(imageArray);
 
                 Memchik mem = new Memchik(add_mem_wnd.add_name_meme.Text, base64ImageRepresentation, add_mem_wnd.add_tag_meme.Text);
 
                 memes.Add(mem);
-                meme_list.Items.Add(mem.Name);
+                listMemesov.Items.Add(mem.Name);
 
-                if (!(meme_categories.Items.Contains(mem.Category)))
-                    meme_categories.Items.Add(mem.Category);
+                if (!(categoriesMemesov.Items.Contains(mem.Category)))
+                    categoriesMemesov.Items.Add(mem.Category);
             }
 
 
@@ -88,80 +87,80 @@ namespace catalogmemov
             return (ImageSource)bitmap;
         }
 
-        private void memes_save_Click(object sender, RoutedEventArgs e)
+        private void sohranitMemchiki_Click(object sender, RoutedEventArgs e)
         {
             string jsonString = JsonSerializer.Serialize(memes);
             File.WriteAllText(fileName, jsonString);
         }
 
-        private void meme_list_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void listMemesov_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if ((meme_categories.SelectedIndex == -1 || meme_categories.SelectedIndex == 0) && (meme_find.Text.Length == 0 && meme_find_by_tag.Text.Length == 0))
+            if ((categoriesMemesov.SelectedIndex == 0) && (poisMmemaPoImeni.Text.Length == 0 && poisMmemaPoTaguField.Text.Length == 0))
             {
-                if (meme_list.SelectedIndex != -1)
-                    meme_img.Source = ByteToImage(Convert.FromBase64String(memes[meme_list.SelectedIndex].Img));
+                if (listMemesov.SelectedIndex != -1)
+                    meme_img.Source = ByteToImage(Convert.FromBase64String(memes[listMemesov.SelectedIndex].Img));
             }
             else
-                if (meme_list.SelectedIndex != -1)
-                meme_img.Source = ByteToImage(Convert.FromBase64String(temp_memes[meme_list.SelectedIndex].Img));
+                if (listMemesov.SelectedIndex != -1)
+                meme_img.Source = ByteToImage(Convert.FromBase64String(buferMemov[listMemesov.SelectedIndex].Img));
         }
 
-        private void meme_del_Click(object sender, RoutedEventArgs e)
+        private void udalitMemchik_Click(object sender, RoutedEventArgs e)
         {
-            if (meme_list.SelectedIndex != -1 && meme_list.Items.Count == memes.Count)
+            if (listMemesov.SelectedIndex != -1 && listMemesov.Items.Count == memes.Count)
             {
-                memes.Remove(memes[meme_list.SelectedIndex]);
-                meme_list.Items.Clear();
+                memes.Remove(memes[listMemesov.SelectedIndex]);
+                listMemesov.Items.Clear();
 
                 foreach (Memchik mem in memes)
-                    meme_list.Items.Add(mem.Name);
+                    listMemesov.Items.Add(mem.Name);
             }
             else
                 MessageBox.Show("Select category all");
         }
 
-        private void find_mem_Click(object sender, RoutedEventArgs e)
+        private void findMemchik_Click(object sender, RoutedEventArgs e)
         {
-            meme_list.Items.Clear();
-            temp_memes.Clear();
-            foreach (Mem mem in memes)
+            listMemesov.Items.Clear();
+            buferMemov.Clear();
+            foreach (Memchik mem in memes)
             {
-                if (mem.Name.ToLower().Contains(meme_find.Text.ToLower()))
+                if (mem.Name.ToLower().Contains(poisMmemaPoImeni.Text.ToLower()))
                 {
-                    meme_list.Items.Add(mem.Name);
-                    temp_memes.Add(mem);
+                    listMemesov.Items.Add(mem.Name);
+                    buferMemov.Add(mem);
                 }
             }
         }
 
-        private void meme_categories_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void categoriesMemesov_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (meme_categories.SelectedIndex != -1)
+            if (categoriesMemesov.SelectedIndex != -1)
             {
-                meme_list.Items.Clear();
-                if (meme_categories.SelectedItem.ToString().Equals("all"))
+                listMemesov.Items.Clear();
+                if (categoriesMemesov.SelectedItem.ToString().Equals("all"))
                 {
                     foreach (Memchik mem in memes)
-                        meme_list.Items.Add(mem.Name);
+                        listMemesov.Items.Add(mem.Name);
                     return;
                 }
 
-                temp_memes.Clear();
+                buferMemov.Clear();
 
                 foreach (Memchik mem in memes)
                 {
-                    if (mem.Category == meme_categories.SelectedItem.ToString())
+                    if (mem.Category == categoriesMemesov.SelectedItem.ToString())
                     {
-                        meme_list.Items.Add(mem.Name);
-                        temp_memes.Add(mem);
+                        listMemesov.Items.Add(mem.Name);
+                        buferMemov.Add(mem);
                     }
                 }
             }
         }
 
-        private void meme_url_down_Click(object sender, RoutedEventArgs e)
+        private void skachatMemchikSSsilki_Click(object sender, RoutedEventArgs e)
         {
-            Add_url_meme add_url_mem_wnd = new Add_url_meme();
+            dobavlenie_s_ssilki add_url_mem_wnd = new dobavlenie_s_ssilki();
 
             if (add_url_mem_wnd.ShowDialog() == true)
             {
@@ -176,35 +175,35 @@ namespace catalogmemov
                 Memchik mem = new Memchik(add_url_mem_wnd.name.Text, base64ImageRepresentation, add_url_mem_wnd.tag.Text);
 
                 memes.Add(mem);
-                meme_list.Items.Add(mem.Name);
+                listMemesov.Items.Add(mem.Name);
 
-                if (!(meme_categories.Items.Contains(mem.Category)))
-                    meme_categories.Items.Add(mem.Category);
+                if (!(categoriesMemesov.Items.Contains(mem.Category)))
+                    categoriesMemesov.Items.Add(mem.Category);
             }
         }
 
-        private void find_mem_by_tag_Click(object sender, RoutedEventArgs e)
+        private void poiskMmemaPoTagu_Click(object sender, RoutedEventArgs e)
         {
-            meme_list.Items.Clear();
-            temp_memes.Clear();
+            listMemesov.Items.Clear();
+            buferMemov.Clear();
             foreach (Memchik mem in memes)
             {
                 foreach (string tag in mem.Tags)
                 {
-                    if (tag.ToLower().Equals(meme_find_by_tag.Text.ToLower()))
+                    if (tag.ToLower().Equals(poisMmemaPoTaguField.Text.ToLower()))
                     {
-                        meme_list.Items.Add(mem.Name);
-                        temp_memes.Add(mem);
+                        listMemesov.Items.Add(mem.Name);
+                        buferMemov.Add(mem);
                     }
                 }
             }
         }
 
-        private void add_tag_Click(object sender, RoutedEventArgs e)
+        private void dobavitTagMemchiku_Click(object sender, RoutedEventArgs e)
         {
-            if (meme_list.SelectedIndex != -1 && meme_list.Items.Count == memes.Count && meme_add_tag.Text.Length > 0)
+            if (listMemesov.SelectedIndex != -1 && listMemesov.Items.Count == memes.Count && dobavitTagMemu.Text.Length > 0)
             {
-                memes[meme_list.SelectedIndex].add_tag(meme_add_tag.Text);
+                memes[listMemesov.SelectedIndex].add_tag(dobavitTagMemu.Text);
             }
             else
                 MessageBox.Show("Select category all or fill in the tag field");

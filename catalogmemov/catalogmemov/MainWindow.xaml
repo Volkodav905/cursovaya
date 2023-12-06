@@ -5,24 +5,24 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:catalogmemov"
         mc:Ignorable="d"
-        Title="MainWindow" Height="577" Width="868" Background="#FF4BB947">
+        Title="MainWindow" Height="599" Width="933" Background="#FF4BB947">
     <Grid>
-        <ListBox x:Name="meme_list" Margin="24,16,613,237" Background="{x:Null}" Foreground="White" FontSize="20" BorderBrush="#FF88EF84" SelectionChanged="meme_list_SelectionChanged"/>
-        <Image x:Name="meme_img" HorizontalAlignment="Left" Height="308" Margin="372,16,0,0" VerticalAlignment="Top" Width="430" Stretch="Fill"/>
-        <ComboBox x:Name="meme_categories" HorizontalAlignment="Left" Margin="41,356,0,0" VerticalAlignment="Top" Width="188" Height="40" FontSize="20" BorderBrush="#FF7093FF" SelectionChanged="meme_categories_SelectionChanged"/>
-        <Label Content="Find a meme" HorizontalAlignment="Left" Margin="41,400,0,0" VerticalAlignment="Top" Height="40" Width="188" FontSize="24" Foreground="White"/>
-        <TextBox x:Name="meme_find" HorizontalAlignment="Left" Margin="41,440,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="188" Height="40" FontSize="20" BorderBrush="#FF88EF84"/>
-        <Label Content="Categories&#xD;&#xA;" HorizontalAlignment="Left" VerticalAlignment="Top" Height="42" Width="188" FontSize="24" Foreground="White" Margin="41,314,0,0"/>
-        <Button x:Name="meme_del" Content="Delete mem" HorizontalAlignment="Left" Margin="322,347,0,0" VerticalAlignment="Top" Height="40" Width="210" FontSize="22" Background="#FF1F711C" Foreground="White" BorderBrush="#FF88EF84" Click="meme_del_Click"/>
-        <Button x:Name="meme_down" Content="Download mem" HorizontalAlignment="Left" Margin="322,437,0,0" VerticalAlignment="Top" Height="40" Width="210" FontSize="22" Background="#FF1F711C" Foreground="White" BorderBrush="#FF88EF84" Click="meme_down_Click"/>
-        <Button x:Name="memes_save" Content="Save memes" HorizontalAlignment="Left" Margin="322,392,0,0" VerticalAlignment="Top" Height="40" Width="210" FontSize="22" Background="#FF1F711C" Foreground="White" BorderBrush="#FF88EF84" Click="memes_save_Click"/>
-        <Button x:Name="find_mem" Content="OK" HorizontalAlignment="Left" Margin="95,484,0,0" VerticalAlignment="Top" Height="40" Width="80" FontSize="20" Click="find_mem_Click"/>
-        <Button Content="Download url mem" HorizontalAlignment="Left" Margin="322,482,0,0" VerticalAlignment="Top" Click="meme_url_down_Click" Height="40" Width="210" FontSize="22" BorderBrush="#FF88EF84" Foreground="White" Background="#FF1F711C"/>
-        <Label Content="Add a tag" HorizontalAlignment="Left" Margin="552,350,0,0" VerticalAlignment="Top" Height="42" Width="188" FontSize="24" Foreground="White"/>
-        <TextBox x:Name="meme_add_tag" HorizontalAlignment="Left" Margin="552,392,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="188" Height="40" FontSize="20" BorderBrush="#FF88EF84"/>
-        <Label Content="Search by tag " HorizontalAlignment="Left" Margin="552,440,0,0" VerticalAlignment="Top" Height="42" Width="188" FontSize="24" Foreground="White"/>
-        <TextBox x:Name="meme_find_by_tag" HorizontalAlignment="Left" Margin="552,482,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="188" Height="40" FontSize="20" BorderBrush="#FF88EF84"/>
-        <Button x:Name="find_mem_by_tag" Content="OK" HorizontalAlignment="Left" Margin="763,484,0,0" VerticalAlignment="Top" Height="40" Width="80" FontSize="20" Click="find_mem_by_tag_Click"/>
-        <Button x:Name="add_tag" Content="OK" HorizontalAlignment="Left" Margin="763,392,0,0" VerticalAlignment="Top" Height="40" Width="80" FontSize="20" Click="add_tag_Click"/>
+        <ListBox x:Name="listMemesov" Margin="24,16,679,237" Background="{x:Null}" Foreground="White" FontSize="20" BorderBrush="#FF88EF84" SelectionChanged="listMemesov_SelectionChanged"/>
+        <Image x:Name="meme_img" HorizontalAlignment="Left" Height="320" Margin="358,16,0,0" VerticalAlignment="Top" Width="444" Stretch="Fill"/>
+        <ComboBox x:Name="categoriesMemesov" HorizontalAlignment="Left" Margin="30,390,0,0" VerticalAlignment="Top" Width="188" Height="40" FontSize="20" BorderBrush="#FF7093FF" SelectionChanged="categoriesMemesov_SelectionChanged" SelectedIndex="0"/>
+        <Label Content="Find a meme" HorizontalAlignment="Left" Margin="30,434,0,0" VerticalAlignment="Top" Height="40" Width="188" FontSize="24" Foreground="White"/>
+        <TextBox x:Name="poisMmemaPoImeni" HorizontalAlignment="Left" Margin="30,474,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="188" Height="40" FontSize="20" BorderBrush="#FF88EF84"/>
+        <Label Content="Categories&#xD;&#xA;" HorizontalAlignment="Left" VerticalAlignment="Top" Height="42" Width="188" FontSize="24" Foreground="White" Margin="30,348,0,0"/>
+        <Button x:Name="udalitMemchik" Content="Delete mem" HorizontalAlignment="Left" Margin="281,363,0,0" VerticalAlignment="Top" Height="40" Width="210" FontSize="22" Background="#FF258A34" Foreground="White" BorderBrush="#FF88EF84" Click="udalitMemchik_Click"/>
+        <Button x:Name="skachatMemchikSCompa" Content="Download mem" HorizontalAlignment="Left" Margin="281,453,0,0" VerticalAlignment="Top" Height="40" Width="210" FontSize="22" Background="#FF258A34" Foreground="White" BorderBrush="#FF88EF84" Click="skachatMemchikSCompa_Click"/>
+        <Button x:Name="sohranitMemchiki" Content="Save memes" HorizontalAlignment="Left" Margin="281,408,0,0" VerticalAlignment="Top" Height="40" Width="210" FontSize="22" Background="#FF258A34" Foreground="White" BorderBrush="#FF88EF84" Click="sohranitMemchiki_Click"/>
+        <Button x:Name="findMemchik" Content="OK" HorizontalAlignment="Left" Margin="84,518,0,0" VerticalAlignment="Top" Height="40" Width="80" FontSize="20" Click="findMemchik_Click"/>
+        <Button x:Name="skachatMemchikSSsilki" Content="Download url mem" HorizontalAlignment="Left" Margin="281,498,0,0" VerticalAlignment="Top" Click="skachatMemchikSSsilki_Click" Height="40" Width="210" FontSize="22" BorderBrush="#FF88EF84" Foreground="White" Background="#FF258A34"/>
+        <Label Content="Add a tag" HorizontalAlignment="Left" Margin="552,364,0,0" VerticalAlignment="Top" Height="42" Width="188" FontSize="24" Foreground="White"/>
+        <TextBox x:Name="dobavitTagMemu" HorizontalAlignment="Left" Margin="552,406,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="188" Height="40" FontSize="20" BorderBrush="#FF88EF84"/>
+        <Label Content="Search by tag " HorizontalAlignment="Left" Margin="552,454,0,0" VerticalAlignment="Top" Height="42" Width="188" FontSize="24" Foreground="White"/>
+        <TextBox x:Name="poisMmemaPoTaguField" HorizontalAlignment="Left" Margin="552,496,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="188" Height="40" FontSize="20" BorderBrush="#FF88EF84"/>
+        <Button x:Name="poisMmemaPoTagu" Content="OK" HorizontalAlignment="Left" Margin="763,498,0,0" VerticalAlignment="Top" Height="40" Width="80" FontSize="20" Click="poiskMmemaPoTagu_Click"/>
+        <Button x:Name="dobavitTagMemchiku" Content="OK" HorizontalAlignment="Left" Margin="763,406,0,0" VerticalAlignment="Top" Height="40" Width="80" FontSize="20" Click="dobavitTagMemchiku_Click"/>
     </Grid>
 </Window>

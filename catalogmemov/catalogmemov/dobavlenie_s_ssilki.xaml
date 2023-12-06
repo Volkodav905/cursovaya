@@ -1,0 +1,19 @@
+﻿<Window x:Class="catalogmemov.dobavlenie_s_ssilki"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:catalogmemov"
+        mc:Ignorable="d"
+        Title="dobavlenie_s_ssilki" Height="450" Width="800" Background="#FF83EF6E">
+    <Grid>
+        <Button x:Name="ok" Content="OK" HorizontalAlignment="Left" Margin="173,349,0,0" VerticalAlignment="Top" Height="49" Width="152" Click="ok_Click"/>
+        <Button x:Name="cncl" Content="Cancel" HorizontalAlignment="Left" Margin="534,349,0,0" VerticalAlignment="Top" Height="49" Width="153" Click="cncl_Click"/>
+        <TextBox x:Name="url" HorizontalAlignment="Left" Margin="18,76,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="756" Height="51" FontSize="16"/>
+        <TextBox x:Name="name" HorizontalAlignment="Left" Margin="18,227,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="261" Height="47"/>
+        <TextBox x:Name="tag" HorizontalAlignment="Left" Margin="425,227,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="262" Height="47"/>
+        <Label Content="Url" HorizontalAlignment="Left" Margin="18,3,0,0" VerticalAlignment="Top" Foreground="White" FontSize="36" Height="72" Width="77"/>
+        <Label Content="Name" HorizontalAlignment="Left" Margin="18,154,0,0" VerticalAlignment="Top" Foreground="White" FontSize="36" Height="72" Width="137"/>
+        <Label Content="Category" HorizontalAlignment="Left" Margin="425,154,0,0" VerticalAlignment="Top" Foreground="White" FontSize="36" Height="72" Width="168"/>
+    </Grid>
+</Window>
