@@ -24,7 +24,7 @@ namespace catalogmemov
         List<Memchik> memes = new List<Memchik>();
         List<Memchik> buferMemov = new List<Memchik>();
 
-        static string fileName = "MemesCatalog.json";
+        static string fileName = "CatalogMemchicov.json";
 
         public MainWindow()
         {
